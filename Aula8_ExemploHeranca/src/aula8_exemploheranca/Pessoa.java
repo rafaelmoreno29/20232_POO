@@ -34,6 +34,16 @@ public class Pessoa {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+
+    @Override
+    public String toString() {
+        return "Celular: " + celular + "\nE-mail: " +email;
+    }
     
+    
+    
+    public String imprimir(){
+        return "Celular: " + celular + "\nE-mail: " +email;
+    }
     
 }

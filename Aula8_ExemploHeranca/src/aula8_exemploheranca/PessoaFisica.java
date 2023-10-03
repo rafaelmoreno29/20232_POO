@@ -20,12 +20,21 @@ public class PessoaFisica extends Pessoa {
         this.nome = nome;
         this.cpf = cpf;
     }
+
+    @Override
+    public String toString() {
+        return "CPF: " + cpf +
+                "\nNome: " + nome +"\n"+
+                super.toString();
+    }
     
+    
+    
+    @Override
     public String imprimir(){
         return "CPF: " + cpf +
                 "\nNome: " + nome +
-                "\nE-mail: " + getEmail() +
-                "\nCelular: " + getCelular();
+                super.imprimir();
     }
 
     public String getNome() {

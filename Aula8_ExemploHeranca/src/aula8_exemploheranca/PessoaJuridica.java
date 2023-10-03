@@ -20,11 +20,21 @@ public class PessoaJuridica extends Pessoa {
         this.cnpj = cnpj;
         this.razao = razao;
     }
+
+    @Override
+    public String toString() {
+        return "CNPJ: " + cnpj +
+                "\nRazão Social: "+ razao+"\n"+
+                super.toString();
+    }
+    
+
+    
+    @Override
     public String imprimir(){
         return "CNPJ: " + cnpj +
                 "\nRazão Social: "+ razao+
-                "\nE-mail: " + getEmail() +
-                "\nCelular: " + getCelular();
+                super.imprimir();
     }
 
     public String getRazao() {
