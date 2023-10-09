@@ -52,5 +52,10 @@ public class PessoaFisica extends Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    @Override
+    public boolean validarDocumento() {
+        return cpf.length() == 11;
+    }
     
 }

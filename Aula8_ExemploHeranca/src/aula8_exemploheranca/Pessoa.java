@@ -8,7 +8,7 @@ package aula8_exemploheranca;
  *
  * @author rafae
  */
-public class Pessoa {
+public abstract class Pessoa {
     private String email;
     private String celular;
     
@@ -18,6 +18,8 @@ public class Pessoa {
         this.email = email;
         this.celular = celular;
     }
+    
+    public abstract boolean validarDocumento();
 
     public String getEmail() {
         return email;

@@ -52,5 +52,10 @@ public class PessoaJuridica extends Pessoa {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
+    @Override
+    public boolean validarDocumento() {
+        return cnpj.length() == 14;
+    }
     
 }
