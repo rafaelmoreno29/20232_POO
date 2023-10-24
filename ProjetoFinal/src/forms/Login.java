@@ -4,6 +4,7 @@
  */
 package forms;
 
+import dao.ManagerFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -162,7 +163,9 @@ public class Login extends javax.swing.JDialog {
             autenticado = true;
             dispose();
         } else {
-             JOptionPane.showMessageDialog(this, "Usuário Inválido!","Atenção",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(this, 
+                     "Usuário Inválido!","Atenção",
+                     JOptionPane.ERROR_MESSAGE);
             autenticado = false;
         }
 
