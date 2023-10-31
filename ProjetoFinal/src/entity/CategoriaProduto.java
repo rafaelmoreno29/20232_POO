@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
 @NamedQueries({
     @NamedQuery(name = "CategoriaProduto.findAll", 
             query = "SELECT c FROM CategoriaProduto c"),
-    @NamedQuery(name = "CategoriaProduto.findById",
+    @NamedQuery(name = "CategoriaProduto.findByCodigo",
             query = "SELECT c FROM CategoriaProduto c WHERE c.id = :codigo")
 })
 

@@ -21,7 +21,8 @@ import utils.TableModelCreator;
 public class ListarCategoria extends javax.swing.JInternalFrame {
 
     private static ListarCategoria myInstance;
-
+    private int idSelecionado = 0;
+    
     public static ListarCategoria getInstance() {
         if (myInstance == null) {
             myInstance = new ListarCategoria();
@@ -61,8 +62,8 @@ public class ListarCategoria extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -96,11 +97,16 @@ public class ListarCategoria extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Editar");
-        jButton2.setEnabled(false);
+        btnEditar.setText("Editar");
+        btnEditar.setEnabled(false);
 
-        jButton3.setText("Excluir");
-        jButton3.setEnabled(false);
+        btnExcluir.setText("Excluir");
+        btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,9 +136,9 @@ public class ListarCategoria extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(btnExcluir))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -142,8 +148,8 @@ public class ListarCategoria extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnEditar)
+                    .addComponent(btnExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -171,17 +177,36 @@ public class ListarCategoria extends javax.swing.JInternalFrame {
         int column = jTable1
   .convertColumnIndexToView(jTable1.getColumn("Id ")
           .getModelIndex());            
-   String s = source.getModel().getValueAt(row, column)
-           + "";
-        JOptionPane.showMessageDialog(null, s);
-
+   idSelecionado = 
+      Integer.parseInt(
+            source.getModel().getValueAt(row, column)+"");
+   btnEditar.setEnabled(true);
+   btnExcluir.setEnabled(true);
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        if(
+       JOptionPane.showConfirmDialog(
+        this,"Confirma a exclusão?","Atenção",
+           JOptionPane.YES_NO_OPTION,
+           JOptionPane.QUESTION_MESSAGE) 
+                == JOptionPane.YES_OPTION){
+           CategoriaProdutoDAO cDAO = 
+                   new CategoriaProdutoDAO();
+            CategoriaProduto c = 
+                  cDAO.selecionarPorCodigo(idSelecionado);
+            cDAO.excluir(c);
+            JOptionPane.showMessageDialog(this, "Excluído!");
+            atualizarTabela();
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
