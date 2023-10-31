@@ -4,6 +4,8 @@
  */
 package forms;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+
 /**
  *
  * @author rafae
@@ -189,6 +191,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        try{
+            FlatArcOrangeIJTheme.setup();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
