@@ -5,6 +5,8 @@
 package forms;
 
 import dao.ManagerFactory;
+import dao.UsuarioDAO;
+import entity.Usuario;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -159,12 +161,24 @@ public class Login extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         if (textUsuario.getText().equals("rafael")) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        try{
+        if(usuarioDAO.selecionarTodos().isEmpty()){
+            Usuario usu = new Usuario();
+            usu.setUsuario("admin");
+            usu.setSenha("123");
+            usuarioDAO.inserir(usu);
+        }
+        }catch(Exception ex){}
+        usuarioDAO = new UsuarioDAO();
+        if (usuarioDAO.autenticar(
+                textUsuario.getText(), 
+                textSenha.getText())) {
             autenticado = true;
             dispose();
         } else {
              JOptionPane.showMessageDialog(this, 
-                     "Usuário Inválido!","Atenção",
+              "Usuário ou senha inválida!","Atenção",
                      JOptionPane.ERROR_MESSAGE);
             autenticado = false;
         }
